@@ -6,20 +6,23 @@
 </template>
 
 <script>
-export default {  
+export default {
   mounted() {
     this.show_tweets();
 
     let button_one = document.querySelector(`.button_one`);
-    button_one.addEvenListener(`click`, this.page_orientation);
+    button_one.addEventListener(`click`, this.page_orientation);
   },
 
   methods: {
-        page_orientation() {
-
-    [`display`][`grid-template-coloumns: 1fr 1fr 1fr`]
- 
-        },
+    page_orientation() {                                                          //still don't know how to write syntax proplerly
+      let tweet_container = document.getElementsByClassName(`tweet_container`);
+      if ([`style`][`grid-auto-flow: row` === true]) {
+        tweet_container[`style`][`grid-template-columns`] = `1fr 1fr 1fr`;             
+      } else if ([`style`][`grid-template-columns: 1fr 1fr 1fr;` === true]) {
+        tweet_container[`style`][`grid-auto-flow: row`];
+      }
+    },
 
     show_tweets: function () {
       for (let i = 0; i < this.tweets.length; i++) {
@@ -48,7 +51,7 @@ export default {
 <style scoped>
 .tweet_container {
   display: grid;
-  grid-auto-flow: row ;
+  grid-auto-flow: row;
   /* grid-template-columns: 1fr 1fr 1fr;   for reference*/
 }
 </style>
